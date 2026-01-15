@@ -1,15 +1,20 @@
-package com.forum.project_forum.dto.topico.usuario;
+package com.forum.project_forum.dto.usuario;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class DadosCadastroUsuario {
-    @NotBlank
+
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
 
-    @NotBlank
+    @Email(message = "Email inválido")
+    @NotBlank(message = "O email é obrigatório")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "A senha é obrigatória")
+    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
     private String senha;
 
     // Getters e setters
@@ -22,7 +27,8 @@ public class DadosCadastroUsuario {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
+    // O login será sempre o email
     public String getLogin() {
-        return getLogin();
+        return email;
     }
 }
