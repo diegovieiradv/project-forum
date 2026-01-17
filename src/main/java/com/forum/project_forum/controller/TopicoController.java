@@ -20,7 +20,7 @@ public class TopicoController {
     @Autowired
     private TopicoRepository repository;
 
-    // GET - listar todos os tópicos
+    // GET - lista
     @GetMapping
     public List<DadosListagemTopico> listar() {
         return repository.findAll()
@@ -29,7 +29,7 @@ public class TopicoController {
                 .collect(Collectors.toList());
     }
 
-    // GET - buscar um tópico pelo id
+    // GET - busca
     @GetMapping("/{id}")
     public ResponseEntity<DadosListagemTopico> buscar(@PathVariable Long id) {
         return repository.findById(id)
@@ -37,7 +37,7 @@ public class TopicoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST - cadastrar um novo tópico
+    // POST - cadastra
     @PostMapping
     public ResponseEntity<DadosListagemTopico> cadastrar(@RequestBody @Valid DadosCadastroDoTopico dados) {
         Topico topico = new Topico(dados.getTitulo(), dados.getMensagem());
@@ -45,7 +45,7 @@ public class TopicoController {
         return ResponseEntity.ok(new DadosListagemTopico(topico.getId(), topico.getTitulo()));
     }
 
-    // PUT - atualizar um tópico
+    // PUT - atualiza
     @PutMapping("/{id}")
     public ResponseEntity<DadosListagemTopico> atualizar(
             @PathVariable Long id,
@@ -61,7 +61,7 @@ public class TopicoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE - deletar tópico
+    // DELETE - deleta
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         return repository.findById(id)

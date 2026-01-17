@@ -22,7 +22,7 @@ public class Topico {
         this.mensagem = mensagem;
     }
 
-    // getters e setters
+    
     public Long getId() {
         return id;
     }

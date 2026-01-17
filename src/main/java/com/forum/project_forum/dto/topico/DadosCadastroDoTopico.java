@@ -10,7 +10,7 @@ public class DadosCadastroDoTopico {
     @NotBlank
     private String mensagem;
 
-    // Getters e setters
+
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
 

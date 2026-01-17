@@ -17,21 +17,21 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
-    // POST - cadastrar usuário
+    // POST - cadastra
     @PostMapping
     public ResponseEntity<Usuario> cadastrar(@RequestBody @Valid Usuario usuario) {
         repository.save(usuario);
         return ResponseEntity.ok(usuario);
     }
 
-    // GET - listar todos os usuários
+    // GET - lista
     @GetMapping
     public ResponseEntity<List<Usuario>> listarTodos() {
         List<Usuario> usuarios = repository.findAll();
         return ResponseEntity.ok(usuarios);
     }
 
-    // GET - consultar usuário por ID
+    // GET - consulta
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> consultarPorId(@PathVariable Long id) {
         Optional<Usuario> usuario = repository.findById(id);
@@ -39,7 +39,7 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // PUT - atualizar usuário
+    // PUT - atualiza
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody @Valid Usuario dados) {
         Optional<Usuario> usuarioExistente = repository.findById(id);
@@ -56,7 +56,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    // DELETE - remover usuário
+    // DELETE - remove
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (!repository.existsById(id)) {

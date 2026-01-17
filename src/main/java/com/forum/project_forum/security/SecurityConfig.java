@@ -2,6 +2,7 @@ package com.forum.project_forum.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,10 +22,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // desativa CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/usuarios").permitAll() // endpoints públicos
-                        .requestMatchers("/topicos").permitAll() // GET /topicos público
-                        .anyRequest().authenticated() // todo o resto protegido
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/topicos").permitAll()
+                        .anyRequest().authenticated()
                 )
+
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

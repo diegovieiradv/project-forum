@@ -17,7 +17,7 @@ public class DadosCadastroUsuario {
     @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
     private String senha;
 
-    // Getters e setters
+
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 
@@ -27,7 +27,7 @@ public class DadosCadastroUsuario {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    // O login será sempre o email
+
     public String getLogin() {
         return email;
     }
